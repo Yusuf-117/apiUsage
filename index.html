@@ -149,7 +149,8 @@
 							<p class="text-danger d-none errMsg">Something went wrong, Try another Keyword</p>
 						</div>
 						<div class="col-sm-12 col-md-6 col-lg-6" style="height:400px;">
-							<img id="pixaImg" src="https://via.placeholder.com/400" alt="Image Not Loaded..." width="100%" style="max-height: 100%;">
+							<img id="pixaImg" src="https://pixabay.com/get/g45ae221d191972776a70ed5dda7560d615cf8e04e19af687c644fb8d2fa5d5a39998b7b88237c89f47c9a8db1dc3ffc618fa019998ed4fd2aca000d8838f8bb9_1280.jpg" alt="Image Not Loaded..." width="100%" style="max-height: 100%;">
+							<!-- https://via.placeholder.com/400 -->
 						</div>
 					</div>
 				</div>
@@ -173,8 +174,8 @@
 					<div class="row" style="align-items: center;">
 						<div class="col-sm-12 col-md-12 col-lg-12 text-center">
 							<button class="btn btn-primary combineBtn mt-3 mb-3">Combine Image and quote</button><br>
-							<div style="max-width:800px;margin:0 auto;max-height:500px;">
-								<canvas style="border-radius: 10px;border: 2px solid black; width:100%;" id="canvas" width="800" height="500"></canvas><br>
+							<div style="max-width:800px;margin:0 auto;">
+								<canvas style="border-radius: 10px;border: 2px solid black; width:100%;" id="canvas" width="800"></canvas><br>
 							</div>
 							<button class="btn btn-success downloadBtn mt-3 mb-3">Download Image</button><br>
 						</div>
@@ -331,6 +332,8 @@
 				img.src = $("#pixaImg").attr("src");
 				img.crossOrigin="anonymous";
 				img.onload = function() {
+					canvas.height = img.height / 2;
+					canvas.width = img.width / 2;
 					var hRatio = canvas.width  / img.width    ;
 					var vRatio =  canvas.height / img.height  ;
 					var ratio  = Math.min ( hRatio, vRatio );
@@ -340,7 +343,7 @@
 
 
 					ctx.fillStyle = '#000000b3';
-					ctx.fillRect(0, 0, 800, 500);
+					ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 					ctx.beginPath();
 					ctx.fillStyle = '#fff';
@@ -363,9 +366,9 @@
 
 					for (var i = 0; i < arr2.length; i++) {
 						x = 100 + (50 * (i + 1));
-						ctx.fillText(arr2[i], 400, x);
+						ctx.fillText(arr2[i], (canvas.width / 2), x);
 					}
-					ctx.fillText($(".author").html(), 550, 450);
+					ctx.fillText($(".author").html(), (canvas.width - 150), (canvas.height - 100));
 					ctx.closePath();
 				};
 			});
