@@ -149,7 +149,7 @@
 							<p class="text-danger d-none errMsg">Something went wrong, Try another Keyword</p>
 						</div>
 						<div class="col-sm-12 col-md-6 col-lg-6" style="height:400px;">
-							<img id="pixaImg" src="https://pixabay.com/get/g45ae221d191972776a70ed5dda7560d615cf8e04e19af687c644fb8d2fa5d5a39998b7b88237c89f47c9a8db1dc3ffc618fa019998ed4fd2aca000d8838f8bb9_1280.jpg" alt="Image Not Loaded..." width="100%" style="max-height: 100%;">
+							<img id="pixaImg" src="https://via.placeholder.com/400" alt="Image Not Loaded..." width="100%" style="max-height: 100%;">
 							<!-- https://via.placeholder.com/400 -->
 						</div>
 					</div>
@@ -162,6 +162,8 @@
 							<h4>Search term</h4>
 							<p>What kind of quote are you looking for?</p>
 							<input type="text" class="form-control quoteSearch">
+							<input type="text" class="form-control customQuote mt-3" placeholder="Custom Quote">
+							<input type="text" class="form-control customAuthor mt-3" placeholder="Custom Author">
 						</div>
 						<div class="col-sm-12 col-md-6 col-lg-6">
 							<p class="qtPlace">This is where the quote will go</p><br><p class="author text-right"></p>
@@ -297,7 +299,12 @@
 					} 
 				});
 			});
-
+			$(".customQuote").off("keyup").on("keyup",function(){
+				$(".qtPlace").html(this.value);
+			});
+			$(".customAuthor").off("keyup").on("keyup",function(){
+				$(".author").html(this.value);
+			});
 			$(".quoteSearch").on("keyup",function(){
 				var keyword = this.value;
 				keyword = keyword.replace(" ", "|").toLowerCase();
