@@ -254,7 +254,7 @@
 			$(".newRiddleBtn").on("click",function(){
 				$(".answer").hide();
 				var req = new XMLHttpRequest();
-				req.open('GET', 'https://yusuf117.github.io/apiUsage/riddlesReal.json', false);
+				req.open('GET', 'https://yusuf-117.github.io/apiUsage/riddlesReal.json', false);
 				req.send(null);
 				if(req.status == 200) {
 					var riddles = req.responseText;
